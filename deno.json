@@ -1,0 +1,14 @@
+{
+	"name": "@paulaboks/codecounter",
+	"version": "0.0.1",
+	"exports": "./main.ts",
+	"fmt": {
+		"useTabs": true,
+		"indentWidth": 4,
+		"lineWidth": 120,
+		"newLineKind": "lf"
+	},
+	"imports": {
+		"@std/path": "jsr:@std/path@^1.1.2"
+	}
+}
