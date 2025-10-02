@@ -35,7 +35,6 @@ function read_dir(path: string) {
 	here: for (const entry of dir) {
 		if (entry.isDirectory) {
 			for (const exclude of exclude_dirs) {
-				console.log(exclude);
 				if (entry.name.includes(exclude)) {
 					continue here;
 				}
