@@ -9,7 +9,7 @@ const exclude_dirs = [
 	"_fresh",
 ];
 
-const lines: Record<string, number> = {};
+const total_count: Record<string, Record<string, number>> = {};
 
 function read_file(path: string) {
 	const base = basename(path);
@@ -23,10 +23,13 @@ function read_file(path: string) {
 	const lang_name = get_language_by_extension(ext);
 
 	if (lang_name) {
+		total_count[lang_name] = total_count[lang_name] ?? { files: 0, lines: 0 };
+
+		total_count[lang_name].files += 1;
+
 		const file = Deno.readTextFileSync(path);
 		const count = file.split("\n").length;
-		lines[lang_name] = lines[lang_name] ?? 0;
-		lines[lang_name] += count;
+		total_count[lang_name].lines += count;
 	}
 }
 
@@ -49,4 +52,4 @@ function read_dir(path: string) {
 }
 
 read_dir(".");
-console.table(lines);
+console.table(total_count);
